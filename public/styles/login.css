@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+
+body{
+    font-family: "Noto Serif", serif;
+}
+
+.login > h1 {
+    padding-bottom: 30px;
+    margin: auto;
+    height: fit-content;
+    width: fit-content;
+}
+
+.login{
+    padding-top: 100px;
+    
+    margin: auto ;
+    height: fit-content;
+    width: fit-content;
+}
+
+.login > form {
+    display: grid;
+}
+
+.login > form > input {
+    margin: 10px;
+    height: 30px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    padding: 5px;
+}
+
+.login > form > label{
+    padding-left : 10px;
+    
+    
+
+}
+
+.login > form > button{
+    margin-top: 30px;
+}
