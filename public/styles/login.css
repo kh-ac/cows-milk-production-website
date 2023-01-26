@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
 
-body{
-    font-family: "Noto Serif", serif;
-}
 
 .login > h1 {
     padding-bottom: 30px;
@@ -12,7 +8,7 @@ body{
 }
 
 .login{
-    padding-top: 100px;
+    padding-top: 0px;
     
     margin: auto ;
     height: fit-content;

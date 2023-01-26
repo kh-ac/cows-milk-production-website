@@ -1,5 +1,10 @@
-doctype
-html
-    head
+include ./components/page_header
+    link(rel = "stylesheet", href = "/styles/main.css")
+    link(rel = "stylesheet", href = "/styles/dashboard.css")
+    title Dashboard
+
     body
-        p Dashboard
+        include ./components/nav
+
+        .operations
+            include ./components/operations

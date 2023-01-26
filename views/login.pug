@@ -6,10 +6,10 @@ include ./components/page_header.pug
 
 body
     
-
+    include ./components/nav.pug
     //- Login Form
     div(class = "login")
-        h1 Login
+        h1 Login 
         form(action = "/login" , method = "POST")
             label(for = "username") Username :
             input(type = "text",  id = "username " , name = "username" )

@@ -1,12 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+
 
 :root{
-
     /*Colors*/
     --primary-color: #607D8B;
+    --dark-primary-color: #455A64;
+    --light-primary-color: #CFD8DC;
+    --accent-color : #009688;
+    --primary-text-color : #212121;
+    --secondary-text-color : #757575;
+    --divider-color : #BDBDBD;
+}
+
+body{
+    font-family: "Noto Serif", serif;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+p, h1, h2, h3, a, ul{
+    text-decoration: none;
+    color: #222;
+    margin: 0;
+    padding: 0;
 }
 
 .btn{
-
     border: 2px solid var(--primary-color);
     background-color: white;
     border-radius: 10px;
@@ -17,8 +36,36 @@
 }
 
 .btn:hover{
-    
     background-color: var(--primary-color);
     color: white;
     border: 1px solid var(--primary-color);
+}
+
+/* nav and footer*/
+nav{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+nav li {
+    list-style-type: none;
+    margin-left: 20px;
+}
+
+nav h1{
+    font-size: 3em;
+  }
+
+nav p, nav a{
+    color: var(--primary-text-color);
+    font-weight: 400;
 }

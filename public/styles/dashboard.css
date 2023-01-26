@@ -1,0 +1,28 @@
+
+
+.operations{
+    display : grid;
+    width: fit-content;
+    height: fit-content;
+    grid-gap: 20px;
+    margin: auto;
+}
+
+.operations > a {
+
+    width: 100%;
+    margin: auto;
+    border : 2px solid var(--primary-color);
+    text-decoration: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-text-color);
+    padding: 15px;
+}
+
+.operations > a:hover{
+    background-color: var(--light-primary-color);
+    color : var(--primary-text-color);
+}

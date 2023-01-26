@@ -13,6 +13,9 @@ app.use(session({
     secret: "key that will sign cookie",
     resave : false,
     saveUninitialized : false,
+    cookie : {
+        maxAge : 1000 * 60 * 60  // 1 hour 
+    }
 }))
 
 // Set view engine
@@ -27,8 +30,7 @@ app.use(express.static('./public'));
 
 // Routes
 app.use("/", require("./routers/login") )
-app.use("/dashboard" , (req , res) =>{
-    res.render("dashboard")
-})
+app.use("/dashboard" , require("./routers/dashboard"))
+app.use("/register-cow" , require("./routers/register-cow"))
 
 app.listen(4000)
