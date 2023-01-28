@@ -1,0 +1,24 @@
+include ./components/page_header
+    link(rel="stylesheet" , href = "/styles/register-cow.css" )
+    title Edit Examination
+
+
+    body
+        include ./components/nav
+
+        .register-cow-form
+            h1 Edit Examination
+
+            form(action = "/examination/edit" , method = "POST")
+
+                input(type = "hidden" , name = "id" , value = examination.id)
+
+                label(for = "date") Date :
+                input(type = "date" , id = "date" , name = "date" , value = examination.date) 
+
+                label(for = "motherID") Disease
+                input(type = "text" , id = "disease" , name = "disease" required , value = examination.disease)
+
+                label
+                button(type = "submit" , class = "btn") Save
+

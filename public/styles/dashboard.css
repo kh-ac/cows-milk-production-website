@@ -2,6 +2,7 @@
 
 .operations{
     display : grid;
+    
     width: fit-content;
     height: fit-content;
     grid-gap: 20px;

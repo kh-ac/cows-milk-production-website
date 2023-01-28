@@ -1,0 +1,52 @@
+include ./components/page_header
+    link(rel = "stylesheet" , href = "/styles/view-cows.css")
+    title View Cows
+    script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')
+    script(src= "/js/delete-cow-scripts.js")
+
+
+    body 
+
+        include ./components/nav
+        h1 View Cows
+
+        .list
+            .headers
+                p id
+                p Birth Date
+                p Start Date
+                p Breed
+                p Mother id
+                
+            for cow in cows || [] 
+                .list-element()
+                    p= cow.id
+                    p= cow.birthDate
+                    p= cow.startDate
+                    p= cow.breed
+                    p= cow.motherID
+                    
+                    form(action = "/cow/edit" , method ="GET")
+                        input(type = "hidden" , name = "id" , value = cow.id)
+                        button(type = "submit")
+                            i(class='fas fa-edit' style='font-size:25px;color:teal' )
+
+                    form(action = "/cow/delete" , method ="POST")
+                        input(type = "hidden" , name = "id" , value = cow.id)
+                        button(type = "submit")
+                            i(class='fas fa-trash' style='font-size:25px;color:#E64A19')
+                        
+
+        
+
+                    
+                    
+            
+                    
+                    
+                    
+                
+                
+                    
+                    
+                      

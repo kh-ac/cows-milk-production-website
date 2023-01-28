@@ -1,69 +1,132 @@
 
 const fs = require("fs")
+const path = require("path")
 
-const CowType = {
-    Holstein: "Holstein",
-    Montbeliarde : "Montbeliarde", 
+
+const uid = ()=>{
+    return Date.now().toString(36) + Math.random().toString(36).substring(5);
 }
 
-class Cow {
+const registerCow = (id , birthDate ,startDate,  breed , motherID) => {
+    
 
-    constructor( id , birthDate ,startDate,  type , motherID  ) {
-        this.id = id;
-        this.birthDate = birthDate;
-        this.startDate = startDate;
-        this.type = type;
-        this.motherID = motherID;
+    // reading JSON file
+    const cows = fs.readFileSync(path.join(__dirname , "../database/cows.json") , "utf-8")
+    
+
+    // 
+    var cowsJSON = []
+    if (cows.length !== 0){
+        cowsJSON = JSON.parse(cows)
     }
+    
+    
 
-    toJson(){
-        return {
-            id : this.id,
-            birthDate : this.birthDate,
-            startDate : this.startDate,
-            type : this.type,
-            motherID : this.motherID,
+    // check if motherID is valid
+    if (motherID !== ""){
+        //const motherCow = cowsJSON.find(cow => cow.id === motherId);
+        if(!motherID){
+            console.log("motherID is not valid");
+            return false;
         }
     }
 
-    fromJson(json){
-        return Cow(
-            json["id"],
-            json["birthDate"],
-            json["startDate"],
-            json["type"],
-            json["motherID"],
-        )
+    if(!id){
+        const newCow = {
+            id: uid(),
+            birthDate: birthDate,
+            startDate: startDate,
+            breed: breed,
+            motherID: motherID,
+        }
+    
+        cowsJSON.push(newCow)
+        
     }
+    else{
 
-    registerNewCow(birthDate ,startDate,  type , motherID ){
-
-        // reading JSON file
-        const cows = fs.readFileSync(path.join(__dirname , "../database/cows.json") , "utf-8")
-
-        // 
-        const cowsJSON = JSON.parse(cows)
-
-        // check if motherID is valid
-        if (motherID !== ""){
-
-            if(!motherID){
-                console.log("motherID is not valid");
-                return false;
+        const newCowsJson = cowsJSON.map((cow) => {
+            if (cow.id === id){
+                cow.startDate = startDate;
+                cow.birthDate = birthDate;
+                cow.breed = breed;
+                cow.motherID = motherID;
             }
-        }
+            return cow 
+        }) 
 
-        const newCow = new Cow( (cowsJSON.length + 1).toString() , birthDate ,startDate,  type , motherID  )
+        cowsJSON = newCowsJson;
 
-        cowsJSON.push(newCow.toJson())
+    }
+    
+    
 
+    try{
+        fs.writeFileSync(path.join(__dirname , "../database/cows.json") , JSON.stringify(cowsJSON) , "utf-8");
+        return true;
+    }catch(err){
+        console.log(err);
+    }
+
+}
+
+const getCowByID = (id) => {
+
+    const cows = fs.readFileSync(path.join(__dirname , "../database/cows.json") , "utf-8")
+    
+    var cowsJSON =[]
+    if (cows.length !== 0){
+        cowsJSON = JSON.parse(cows)
+    }
+
+    const cow = cowsJSON.find(cow => cow.id === id)
+
+    return cow;
+
+}
+
+const getCows = () => {
+
+    const cows = fs.readFileSync(path.join(__dirname , "../database/cows.json") , "utf-8")
+    
+    var cowsJSON =[]
+    if (cows.length !== 0){
+        cowsJSON = JSON.parse(cows)
+    }
+
+    return cowsJSON;
+}
+
+const deleteCow = (id) => {
+
+    const cows = fs.readFileSync(path.join(__dirname , "../database/cows.json") , "utf-8")
+
+    var cowsJSON = []
+    if (cows.length !== 0)
+        cowsJSON = JSON.parse(cows)
+
+    const cow = cowsJSON.find(cow => id === cow.id)
+    
+    if (cow){
+       
+        const newCowsJSON = cowsJSON.filter(cow => cow.id !== id)
         try{
-            fs.writeFileSync(path.join(__dirname , "../database/cows.json") , JSON.stringify(cowsJSON) , "utf-8");
+            fs.writeFileSync(path.join(__dirname , "../database/cows.json") , JSON.stringify(newCowsJSON) , "utf-8");
             return true;
         }catch(err){
             console.log(err);
         }
-
-
     }
+    else return false ;
+    
+}
+
+
+
+
+module.exports = {
+    registerCow, 
+    getCows,
+    deleteCow,
+    getCowByID,
 }

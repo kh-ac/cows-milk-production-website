@@ -17,7 +17,7 @@ postLogin = (req , res) => {
         return res.render("login" , {error : "Username or Password is incorrect"})
 
     req.session.user = user;
-    console.log(req.session.user)
+    req.session.isAuth = true;
 
     // redirect to dashboard (home page)
     return res.redirect("dashboard")

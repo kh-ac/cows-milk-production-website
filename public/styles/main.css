@@ -30,6 +30,9 @@ p, h1, h2, h3, a, ul{
     background-color: white;
     border-radius: 10px;
     margin: auto;
+    color: var(--primary-text-color);
+    font-size: 1.2em;
+    font-weight: 500;
     height: 40px;
     width: 150px;
     cursor: pointer;
@@ -58,7 +61,7 @@ nav ul {
 
 nav li {
     list-style-type: none;
-    margin-left: 20px;
+    margin-left: 100px;
 }
 
 nav h1{
@@ -68,4 +71,43 @@ nav h1{
 nav p, nav a{
     color: var(--primary-text-color);
     font-weight: 400;
+}
+
+/* Forms */
+
+form {
+    padding-top: 50px ;
+    display: grid;
+    margin: auto;
+    padding: 0;
+    width: fit-content;
+    height: fit-content;
+
+
+}
+
+label {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-left : 10px;
+}
+
+input{
+    
+    height: 30px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    padding: 5px;
+}
+
+
+select{
+    
+    margin: auto;
+    height: 40px;
+    width: 280px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    padding: 5px;
 }

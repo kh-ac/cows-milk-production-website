@@ -14,7 +14,7 @@ app.use(session({
     resave : false,
     saveUninitialized : false,
     cookie : {
-        maxAge : 1000 * 60 * 60  // 1 hour 
+        maxAge : 1000 * 60 * 60 * 60  // 1 day 
     }
 }))
 
@@ -31,6 +31,20 @@ app.use(express.static('./public'));
 // Routes
 app.use("/", require("./routers/login") )
 app.use("/dashboard" , require("./routers/dashboard"))
-app.use("/register-cow" , require("./routers/register-cow"))
+
+app.use("/cow" , require("./routers/cow"))
+app.use("/birth" , require("./routers/birth"))
+app.use("/milk" , require("./routers/milk"))
+app.use("/examination" , require("./routers/examination"))
+
+
+
+
+// app.use("/register-milk-production" , require("./routers/register-milk-production"))
+// app.use("/view-milk-production" , require("./routers/view-milk-production"))
+// app.use("/edit-milk-production" , require("./routers/edit-milk-production"))
+// app.use("/delete-milk-production" , require("./routers/delete-milk-production"))
+
+
 
 app.listen(4000)

@@ -1,0 +1,22 @@
+include ./components/page_header
+    link(rel="stylesheet" , href = "/styles/register-cow.css" )
+    title Register Examination
+
+
+    body
+        include ./components/nav
+
+        .register-cow-form
+            h1 Register Examination
+
+            form(action = "/examination/register" , method = "POST")
+
+                label(for = "date") Date :
+                input(type = "date" , id = "date" , name = "date" required) 
+
+                label(for = "disease") Disease  :
+                input(type = "text" , id = "disease" , name = "disease" required) 
+
+                label
+                button(type = "submit" , class = "btn") Register 
+

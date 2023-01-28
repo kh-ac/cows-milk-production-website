@@ -1,1 +1,30 @@
-include ./components.page_header
+include ./components/page_header
+    link(rel="stylesheet" , href = "/styles/register-cow.css" )
+    title Register Cow
+
+
+    body
+        include ./components/nav
+
+        .register-cow-form
+            h1 Register New Cow
+
+            form(action = "/cow/register" , method = "POST")
+
+                label(for = "birth_date") Birth Date :
+                input(type = "date" , id = "birth_date" , name = "birthDate") 
+
+                label(for = "start_date") Start Date :
+                input(type = "date" , id = "start_date" , name = "startDate" required) 
+
+                label(for = "breed") Breed :
+                select(name = "breed" , id = "breed" , )
+                    option(value = "Holstein") Holstein
+                    option(value = "Montbeliarde") Montbeliarde
+
+                label(for = "motherID") Mother ID
+                input(type = "text" , id = "motherID" , name = "motherID" required)
+
+                label
+                button(type = "submit" , class = "btn") Register 
+
