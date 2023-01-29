@@ -1,48 +1,47 @@
 include ./components/page_header
-    link(rel = "stylesheet" , href = "/styles/view-births.css")
-    title View Births
-    script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')
-    script(src= "/js/delete-cow-scripts.js")
+  link(rel = "stylesheet" , href = "/styles/view-births.css")
+  title View Births
+  script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')
+  script(src= "/js/delete-cow-scripts.js")
+
+  body 
+    include ./components/nav
+    h1 View Births
+
+    .list
+      .headers
+        p id
+        p Birth Date
+        p Mother id
+
+      for birth in births || [] 
+        .list-element()
+          p= birth.id
+          p= birth.birthDate
+          p= birth.motherID
+
+          form(action = "/birth/edit" , method ="GET")
+            input(type = "hidden" , name = "id" , value = birth.id)
+            button(type = "submit")
+              i(class='fas fa-edit' style='font-size:25px;color:teal' )
+
+          form(action = "/birth/delete" , method ="POST")
+            input(type = "hidden" , name = "id" , value = birth.id)
+            button(type = "submit")
+              i(class='fas fa-trash' style='font-size:25px;color:#E64A19')
+              
 
 
-    body 
 
-        include ./components/nav
-        h1 View Births
 
-        .list
-            .headers
-                p id
-                p Birth Date
-                p Mother id
-                
-            for birth in births || [] 
-                .list-element()
-                    p= birth.id
-                    p= birth.birthDate
-                    p= birth.motherID
-                    
-                    form(action = "/birth/edit" , method ="GET")
-                        input(type = "hidden" , name = "id" , value = birth.id)
-                        button(type = "submit")
-                            i(class='fas fa-edit' style='font-size:25px;color:teal' )
 
-                    form(action = "/birth/delete" , method ="POST")
-                        input(type = "hidden" , name = "id" , value = birth.id)
-                        button(type = "submit")
-                            i(class='fas fa-trash' style='font-size:25px;color:#E64A19')
-                        
 
-        
 
-                    
-                    
-            
-                    
-                    
-                    
-                
-                
-                    
-                    
-                      
+
+
+
+
+
+
+
+

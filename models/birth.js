@@ -1,68 +1,69 @@
+const fs = require("fs");
+const path = require("path");
+const uid = require("../utils/uid-generator");
 
-const fs = require("fs")
-const path = require("path")
-const uid = require("../utils/uid-generator")
 
-const registerBirth = (id , birthDate , motherID) => {
+const registerBirth = (id, birthDate, motherID) => {
 
     // reading JSON file
-    const births = fs.readFileSync(path.join(__dirname , "../database/births.json") , "utf-8")
-   
+    const births = fs.readFileSync(path.join(__dirname, "../database/births.json"), "utf-8");
+    const cows = fs.readFileSync(path.join(__dirname, "../database/cows.json"), "utf-8");
+
     // 
-    var birthsJSON = []
-    if (births.length !== 0){
-        birthsJSON = JSON.parse(births)
-    }
-    
-    // check if motherID is valid
-    if (motherID !== ""){
-        //const motherCow = cowsJSON.find(cow => cow.id === motherId);
-        if(!motherID){
-            console.log("motherID is not valid");
-            return false;
-        }
+    var birthsJSON = [];
+    if (births.length !== 0) {
+        birthsJSON = JSON.parse(births);
     }
 
-    if(!id){
+    //
+    var cowsJSON = [];
+    if (cows.length !== 0) {
+        cowsJSON = JSON.parse(cows);
+    }
+
+    mID = cowsJSON.find(cow => cow.id === motherID);
+
+    // check if motherID is valid
+    if (!mID && motherID.trim().length !== 0) {
+        return false;
+    }
+
+    if (!id) {
         const newBirths = {
             id: uid(),
             birthDate: birthDate,
             motherID: motherID,
-        }
-    
+        };
+
         birthsJSON.push(newBirths)
-        
-    }
-    else{
+    } else {
 
         const newBirthsJson = birthsJSON.map((birth) => {
-            if (birth.id === id){
-                birth.birthDate = birthDate;     
+            if (birth.id === id) {
+                birth.birthDate = birthDate;
                 birth.motherID = motherID;
             }
-            return birth 
-        }) 
+            return birth;
+        })
 
         birthsJSON = newBirthsJson;
+   }
 
-    }
-    
-    try{
-        fs.writeFileSync(path.join(__dirname , "../database/births.json") , JSON.stringify(birthsJSON) , "utf-8");
+    try {
+        fs.writeFileSync(path.join(__dirname, "../database/births.json"), JSON.stringify(birthsJSON), "utf-8");
         return true;
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
-
 }
 
 const getBirths = () => {
 
-    const births = fs.readFileSync(path.join(__dirname , "../database/births.json") , "utf-8")
-    
-    var birthsJSON =[]
-    if (births.length !== 0){
-        birthsJSON = JSON.parse(births)
+    const births = fs.readFileSync(path.join(__dirname, "../database/births.json"), "utf-8");
+
+    var birthsJSON = [];
+    if (births.length !== 0) {
+        birthsJSON = JSON.parse(births);
     }
 
     return birthsJSON;
@@ -70,43 +71,41 @@ const getBirths = () => {
 
 const deleteBirth = (id) => {
 
-    const births = fs.readFileSync(path.join(__dirname , "../database/births.json") , "utf-8")
+    const births = fs.readFileSync(path.join(__dirname, "../database/births.json"), "utf-8");
 
-    var birthsJSON = []
+    var birthsJSON = [];
     if (births.length !== 0)
-        birthsJSON = JSON.parse(births)
+        birthsJSON = JSON.parse(births);
 
-    const birth = birthsJSON.find(birth => id === birth.id)
-    
-    if (birth){
-       
-        const newBirthsJSON = birthsJSON.filter(birth => birth.id !== id)
-        try{
-            fs.writeFileSync(path.join(__dirname , "../database/births.json") , JSON.stringify(newBirthsJSON) , "utf-8");
+    const birth = birthsJSON.find(birth => id === birth.id);
+
+    if (birth) {
+
+        const newBirthsJSON = birthsJSON.filter(birth => birth.id !== id);
+        try {
+            fs.writeFileSync(path.join(__dirname, "../database/births.json"), JSON.stringify(newBirthsJSON), "utf-8");
             return true;
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
-    }
-    else return false ;
-    
+    } else return false;
+
 }
 
 
 
 const getBirthByID = (id) => {
 
-    const births = fs.readFileSync(path.join(__dirname , "../database/births.json") , "utf-8")
-    
-    var birthsJSON =[]
-    if (births.length !== 0){
-        birthsJSON = JSON.parse(births)
+    const births = fs.readFileSync(path.join(__dirname, "../database/births.json"), "utf-8");
+
+    var birthsJSON = [];
+    if (births.length !== 0) {
+        birthsJSON = JSON.parse(births);
     }
 
-    const birth = birthsJSON.find(birth => birth.id === id)
+    const birth = birthsJSON.find(birth => birth.id === id);
 
     return birth;
-
 }
 
 module.exports = {
@@ -114,4 +113,5 @@ module.exports = {
     getBirthByID,
     getBirths,
     deleteBirth,
-}
+};
+

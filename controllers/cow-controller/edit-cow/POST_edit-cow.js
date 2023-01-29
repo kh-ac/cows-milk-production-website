@@ -1,26 +1,24 @@
-
-
-
-const POSTeditCow = (req,res) => {
+const POSTeditCow = (req, res) => {
 
     if (!require("../../session/check_login"))
-        res.redirect("/")
+        res.redirect("/");
 
-    const {id , birthDate , startDate , breed , motherID} = req.body;
+    const {
+        id,
+        birthDate,
+        startDate,
+        breed,
+        motherID
+    } = req.body;
 
-    if (!require("../../../models/cow").registerCow( id ,birthDate , startDate , breed , motherID )){
-        req.session.error = "Could not register cow";
-        return res.redirect("/cow/register");       
+    if (!require("../../../models/cow").registerCow(id, birthDate, startDate, breed, motherID)) {
+        req.session.error = "Could not edit cow";
+        return res.redirect("/dashboard");
     }
 
-    req.session.success = "Cow registered successfully"
-    return res.redirect("/dashboard")
+    req.session.success = "Cow edited successfully";
+    return res.redirect("/dashboard");
 
-
-
-
-    
-        
 }
 
 module.exports = POSTeditCow;

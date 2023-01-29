@@ -1,26 +1,23 @@
-
-
-
-const postEditBirth = (req,res) => {
+const postEditBirth = (req, res) => {
 
     if (!require("../../session/check_login"))
-        res.redirect("/")
+        res.redirect("/");
 
-    const {id , birthDate , motherID} = req.body;
+    const {
+        id,
+        birthDate,
+        motherID
+    } = req.body;
 
-    if (!require("../../../models/birth").registerBirth( id ,birthDate ,motherID )){
-        req.session.error = "Could not register birth";
-        return res.redirect("/register-birth");
+    if (!require("../../../models/birth").registerBirth(id, birthDate, motherID)) {
+        req.session.error = "Could not edit birth";
+        return res.redirect("/dashboard");
     }
 
-    req.session.success = "Birth registered successfully"
-    return res.redirect("/dashboard")
+    req.session.success = "Birth edited successfully";
+    return res.redirect("/dashboard");
 
-
-
-
-    
-        
 }
 
 module.exports = postEditBirth;
+

@@ -1,49 +1,46 @@
+const fs = require("fs");
+const path = require("path");
+const uid = require("../utils/uid-generator");
 
-const fs = require("fs")
-const path = require("path")
-const uid = require("../utils/uid-generator")
 
-
-const registerExamination = (id , date , disease) => {
+const registerExamination = (id, date, disease) => {
 
     // reading JSON file
-    const examinations = fs.readFileSync(path.join(__dirname , "../database/examinations.json") , "utf-8")
-   
-    // 
-    var examinationsJSON = []
-    if (examinations.length !== 0){
-        examinationsJSON = JSON.parse(examinations)
-    }
-    
+    const examinations = fs.readFileSync(path.join(__dirname, "../database/examinations.json"), "utf-8");
 
-    if(!id){
+    // 
+    var examinationsJSON = [];
+    if (examinations.length !== 0) {
+        examinationsJSON = JSON.parse(examinations);
+    }
+
+
+    if (!id) {
         const newExaminations = {
             id: uid(),
             date: date,
             disease: disease,
-        }
-    
+        };
+
         examinationsJSON.push(newExaminations)
-        
-    }
-    else{
+
+    } else {
 
         const newExaminationsJson = examinationsJSON.map((examination) => {
-            if (examination.id === id){
-                examination.date = date;     
+            if (examination.id === id) {
+                examination.date = date;
                 examination.disease = disease;
             }
-            return examination 
-        }) 
+            return examination;
+        })
 
         examinationsJSON = newExaminationsJson;
-
     }
-    
-    try{
-        fs.writeFileSync(path.join(__dirname , "../database/examinations.json") , JSON.stringify(examinationsJSON) , "utf-8");
+
+    try {
+        fs.writeFileSync(path.join(__dirname, "../database/examinations.json"), JSON.stringify(examinationsJSON), "utf-8");
         return true;
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
 
@@ -51,11 +48,11 @@ const registerExamination = (id , date , disease) => {
 
 const getExaminations = () => {
 
-    const examinations = fs.readFileSync(path.join(__dirname , "../database/examinations.json") , "utf-8")
-    
-    var examinationsJSON =[]
-    if (examinations.length !== 0){
-        examinationsJSON = JSON.parse(examinations)
+    const examinations = fs.readFileSync(path.join(__dirname, "../database/examinations.json"), "utf-8")
+
+    var examinationsJSON = [];
+    if (examinations.length !== 0) {
+        examinationsJSON = JSON.parse(examinations);
     }
 
     return examinationsJSON;
@@ -63,43 +60,39 @@ const getExaminations = () => {
 
 const deleteExamination = (id) => {
 
-    const examinations = fs.readFileSync(path.join(__dirname , "../database/examinations.json") , "utf-8")
+    const examinations = fs.readFileSync(path.join(__dirname, "../database/examinations.json"), "utf-8")
 
-    var examinationsJSON = []
+    var examinationsJSON = [];
     if (examinations.length !== 0)
-        examinationsJSON = JSON.parse(examinations)
+        examinationsJSON = JSON.parse(examinations);
 
-    const examination = examinationsJSON.find(examination => id === examination.id)
-    
-    if (examination){
-       
-        const newExaminationsJSON = examinationsJSON.filter(examination => examination.id !== id)
-        try{
-            fs.writeFileSync(path.join(__dirname , "../database/examinations.json") , JSON.stringify(newExaminationsJSON) , "utf-8");
+    const examination = examinationsJSON.find(examination => id === examination.id);
+
+    if (examination) {
+
+        const newExaminationsJSON = examinationsJSON.filter(examination => examination.id !== id);
+        try {
+            fs.writeFileSync(path.join(__dirname, "../database/examinations.json"), JSON.stringify(newExaminationsJSON), "utf-8");
             return true;
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
-    }
-    else return false ;
-    
+    } else return false;
+
 }
-
-
 
 const getExaminationByID = (id) => {
 
-    const examinations = fs.readFileSync(path.join(__dirname , "../database/examinations.json") , "utf-8")
-    
-    var examinationsJSON =[]
-    if (examinations.length !== 0){
-        examinationsJSON = JSON.parse(examinations)
+    const examinations = fs.readFileSync(path.join(__dirname, "../database/examinations.json"), "utf-8");
+
+    var examinationsJSON = [];
+    if (examinations.length !== 0) {
+        examinationsJSON = JSON.parse(examinations);
     }
 
-    const examination = examinationsJSON.find(examination => examination.id === id)
+    const examination = examinationsJSON.find(examination => examination.id === id);
 
     return examination;
-
 }
 
 module.exports = {
@@ -107,4 +100,5 @@ module.exports = {
     getExaminationByID,
     getExaminations,
     deleteExamination,
-}
+};
+

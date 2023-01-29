@@ -1,22 +1,21 @@
+const postRegisterExamination = (req, res) => {
 
+    if (!require("../../session/check_login")(req, res))
+        return res.redirect("/");
 
-const postRegisterExamination = (req , res) => {
+    const {
+        id,
+        date,
+        disease
+    } = req.body;
 
-    if (!require("../../session/check_login")(req,res))
-        return res.redirect("/")
-
-    const { id ,date , disease} = req.body;
-
-    if (!require("../../../models/examination").registerExamination( id ,date , disease )){
+    if (!require("../../../models/examination").registerExamination(id, date, disease)) {
         req.session.error = "Could not register Examination";
         return res.redirect("/dashboard");
     }
 
-    req.session.success = "Examination registered successfully"
-    return res.redirect("/dashboard")
-    
-
-    
+    req.session.success = "Examination registered successfully";
+    return res.redirect("/dashboard");
 
 }
 

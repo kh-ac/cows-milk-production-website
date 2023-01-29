@@ -1,47 +1,46 @@
 include ./components/page_header
-    link(rel = "stylesheet" , href = "/styles/view-births.css")
-    title Milk Production History
-    script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')
-    script(src= "/js/delete-cow-scripts.js")
+  link(rel = "stylesheet" , href = "/styles/view-milk.css")
+  title Milk Production History
+  script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')
+  script(src= "/js/delete-cow-scripts.js")
+
+  body 
+
+    include ./components/nav
+    h1 Milk Production History
+
+    .list
+      .headers
+        p Date
+        p Quantity (L)
+
+      for milk in milkList || [] 
+        .list-element()
+          p= milk.date
+          p= milk.quantity
+
+          form(action = "/milk/edit" , method ="GET")
+            input(type = "hidden" , name = "date" , value = milk.date)
+            button(type = "submit")
+              i(class='fas fa-edit' style='font-size:25px;color:teal' )
+
+          form(action = "/milk/delete" , method ="POST")
+            input(type = "hidden" , name = "date" , value = milk.date)
+            button(type = "submit")
+              i(class='fas fa-trash' style='font-size:25px;color:#E64A19')
+              
 
 
-    body 
 
-        include ./components/nav
-        h1 Milk Production History
 
-        .list
-            .headers
-                p Date
-                p Quantity (L)
-                
-            for milk in milkList || [] 
-                .list-element()
-                    p= milk.date
-                    p= milk.quantity
-                    
-                    
-                    form(action = "/milk/edit" , method ="GET")
-                        input(type = "hidden" , name = "date" , value = milk.date)
-                        button(type = "submit")
-                            i(class='fas fa-edit' style='font-size:25px;color:teal' )
 
-                    form(action = "/milk/delete" , method ="POST")
-                        input(type = "hidden" , name = "date" , value = milk.date)
-                        button(type = "submit")
-                            i(class='fas fa-trash' style='font-size:25px;color:#E64A19')
-                        
 
-        
 
-                    
-                    
-            
-                    
-                    
-                    
-                
-                
-                    
-                    
-                      
+
+
+
+
+
+
+
+

@@ -1,38 +1,38 @@
 include ./components/page_header
-    link(rel="stylesheet" , href = "/styles/register-cow.css" )
-    title Edit Cow
+  link(rel="stylesheet" , href = "/styles/register-cow.css" )
+  title Edit Cow
 
+  body
+    include ./components/nav
 
-    body
-        include ./components/nav
+    .register-cow-form
+      h1 Edit Cow
 
-        .register-cow-form
-            h1 Edit Cow
+      form(action = "/cow/edit" , method = "POST")
 
-            form(action = "/cow/edit" , method = "POST")
+        input(type = "hidden" , name = "id" , value = cow.id)
 
-                input(type = "hidden" , name = "id" , value = cow.id)
+        label(for = "birth_date") Birth Date :
+        input(type = "date" , id = "birth_date" , name = "birthDate" , value = cow.birthDate) 
 
-                label(for = "birth_date") Birth Date :
-                input(type = "date" , id = "birth_date" , name = "birthDate" , value = cow.birthDate) 
+        label(for = "start_date") Start Date :
+        input(type = "date" , id = "start_date" , name = "startDate" required , value = cow.startDate) 
 
-                label(for = "start_date") Start Date :
-                input(type = "date" , id = "start_date" , name = "startDate" required , value = cow.startDate) 
+        label(for = "breed") Breed :
+        select(name = "breed" , id = "breed")
+          if cow.breed == "Holstein"
+            option(value = "Holstein" selected) Holstein
+          else 
+            option(value = "Holstein" ) Holstein
+          if cow.breed == "Montbeliarde"
+            option(value = "Montbeliarde" selected) Montbeliarde
+          else 
+            option(value = "Montbeliarde" ) Montbeliarde
 
-                label(for = "breed") Breed :
-                select(name = "breed" , id = "breed")
-                    if cow.breed == "Holstein"
-                        option(value = "Holstein" selected) Holstein
-                    else 
-                        option(value = "Holstein" ) Holstein
-                    if cow.breed == "Montbeliarde"
-                        option(value = "Montbeliarde" selected) Montbeliarde
-                    else 
-                        option(value = "Montbeliarde" ) Montbeliarde
+        label(for = "motherID") Mother ID
+        input(type = "text" , id = "motherID" , name = "motherID" , value = cow.motherID)
 
-                label(for = "motherID") Mother ID
-                input(type = "text" , id = "motherID" , name = "motherID" required , value = cow.motherID)
-
-                label
-                button(type = "submit" , class = "btn") Save
+        label
+        button(type = "submit" , class = "btn") Save
+        
 

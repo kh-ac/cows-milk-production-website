@@ -1,22 +1,22 @@
 include ./components/page_header
-    link(rel="stylesheet" , href = "/styles/register-cow.css" )
-    title Edit Milk Production
+  link(rel="stylesheet" , href = "/styles/register-cow.css" )
+  title Edit Milk Production
 
+  body
+    include ./components/nav
 
-    body
-        include ./components/nav
+    .register-cow-form
+      h1 Edit Milk Daily Production
 
-        .register-cow-form
-            h1 Edit Milk Daily Production
+      form(action = "/milk/edit" , method = "POST")
 
-            form(action = "/milk/edit" , method = "POST")
+        label(for = "date") Date :
+        input(type = "date" , id = "date" , name = "date" , value = milk.date) 
 
-                label(for = "date") Date :
-                input(type = "date" , id = "date" , name = "date" , value = milk.date) 
+        label(for = "quantity") Quantity
+        input(type = "number" , id = "quantity" , name = "quantity" required , value = milk.quantity)
 
-                label(for = "quantity") Quantity
-                input(type = "number" , id = "quantity" , name = "quantity" required , value = milk.quantity)
-
-                label
-                button(type = "submit" , class = "btn") Save
+        label
+        button(type = "submit" , class = "btn") Save
+        
 

@@ -1,29 +1,25 @@
-
-
-h1{
-    margin: auto;
+h1 {
     width: fit-content;
     height: fit-content;
-    
 }
 
-.spacer{
-    margin-bottom: 50px;
+.spacer {
+    margin-bottom: 100px;
 }
-.operations{
-    display : grid;
+
+.operations {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: fit-content;
     height: fit-content;
-    grid-gap: 50px ;
+    grid-gap: 50px;
     margin: auto;
 }
 
-.operations > a {
-
+.operations>a {
     width: 100%;
     margin: auto;
-    border : 2px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
     text-decoration: none;
     border-radius: 10px;
     text-align: center;
@@ -33,7 +29,7 @@ h1{
     padding: 15px;
 }
 
-.operations > a:hover{
+.operations>a:hover {
     background-color: var(--light-primary-color);
-    color : var(--primary-text-color);
+    color: var(--primary-text-color);
 }

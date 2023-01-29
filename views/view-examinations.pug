@@ -1,49 +1,49 @@
 include ./components/page_header
-    link(rel = "stylesheet" , href = "/styles/view-births.css")
-    title Examination History
-    script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')
-    script(src= "/js/delete-cow-scripts.js")
+  link(rel = "stylesheet" , href = "/styles/view-examinations.css")
+  title Examination History
+  script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')
+  script(src= "/js/delete-cow-scripts.js")
+
+  body 
+
+    include ./components/nav
+    h1 Examination History
+
+    .list
+      .headers
+        p id
+        p Date
+        p Disease
+
+      for examination in examinations || [] 
+        .list-element()
+          p= examination.id
+          p= examination.date
+          p= examination.disease
 
 
-    body 
+          form(action = "/examination/edit" , method ="GET")
+            input(type = "hidden" , name = "id" , value = examination.id)
+            button(type = "submit")
+              i(class='fas fa-edit' style='font-size:25px;color:teal' )
 
-        include ./components/nav
-        h1 Examination History
+          form(action = "/examination/delete" , method ="POST")
+            input(type = "hidden" , name = "id" , value = examination.id)
+            button(type = "submit")
+              i(class='fas fa-trash' style='font-size:25px;color:#E64A19')
+              
 
-        .list
-            .headers
-                p id
-                p Date
-                p Disease
-                
-            for examination in examinations || [] 
-                .list-element()
-                    p= examination.id
-                    p= examination.date
-                    p= examination.disease
-                    
-                    
-                    form(action = "/examination/edit" , method ="GET")
-                        input(type = "hidden" , name = "id" , value = examination.id)
-                        button(type = "submit")
-                            i(class='fas fa-edit' style='font-size:25px;color:teal' )
 
-                    form(action = "/examination/delete" , method ="POST")
-                        input(type = "hidden" , name = "id" , value = examination.id)
-                        button(type = "submit")
-                            i(class='fas fa-trash' style='font-size:25px;color:#E64A19')
-                        
 
-        
 
-                    
-                    
-            
-                    
-                    
-                    
-                
-                
-                    
-                    
-                      
+
+
+
+
+
+
+
+
+
+
+

@@ -1,58 +1,44 @@
-
-const fs = require("fs")
-const path = require("path")
-
+const fs = require("fs");
+const path = require("path");
 
 
-const registerMilk = (isNew ,date , quantity ) => {
-
-    
+const registerMilk = (isNew, date, quantity) => {
 
     // reading JSON file
-    const milkList = fs.readFileSync(path.join(__dirname , "../database/milk.json") , "utf-8")
-   
+    const milkList = fs.readFileSync(path.join(__dirname, "../database/milk.json"), "utf-8");
+
     // 
-    var milkListJSON = []
-    if (milkList.length !== 0){
-        milkListJSON = JSON.parse(milkList)
+    var milkListJSON = [];
+    if (milkList.length !== 0) {
+        milkListJSON = JSON.parse(milkList);
     }
 
-    
+    if (isNew) {
 
-    if (isNew){
-
-        const milk = milkListJSON.find(milk => milk.date === date)
+        const milk = milkListJSON.find(milk => milk.date === date);
         if (milk) return false;
         const newMilk = {
             date: date,
             quantity: quantity,
-        }
-        
-        milkListJSON.push(newMilk)
-    }
-    else{
+        };
 
-        
+        milkListJSON.push(newMilk);
+    } else {
 
         const newMilkListJSON = milkListJSON.map(milk => {
-            if (milk.date === date){
+            if (milk.date === date) {
                 milk.quantity = quantity
             }
-            return milk
-        })
+            return milk;
+        });
 
         milkListJSON = newMilkListJSON;
-
     }
-    
-     
 
-    
-    
-    try{
-        fs.writeFileSync(path.join(__dirname , "../database/milk.json") , JSON.stringify(milkListJSON) , "utf-8");
+    try {
+        fs.writeFileSync(path.join(__dirname, "../database/milk.json"), JSON.stringify(milkListJSON), "utf-8");
         return true;
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
 
@@ -60,11 +46,11 @@ const registerMilk = (isNew ,date , quantity ) => {
 
 const getMilkList = () => {
 
-    const milkList = fs.readFileSync(path.join(__dirname , "../database/milk.json") , "utf-8")
-    
-    var milkListJSON =[]
-    if (milkList.length !== 0){
-        milkListJSON = JSON.parse(milkList)
+    const milkList = fs.readFileSync(path.join(__dirname, "../database/milk.json"), "utf-8");
+
+    var milkListJSON = [];
+    if (milkList.length !== 0) {
+        milkListJSON = JSON.parse(milkList);
     }
 
     return milkListJSON;
@@ -72,44 +58,40 @@ const getMilkList = () => {
 
 const deleteMilk = (date) => {
 
-    const milkList = fs.readFileSync(path.join(__dirname , "../database/milk.json") , "utf-8")
+    const milkList = fs.readFileSync(path.join(__dirname, "../database/milk.json"), "utf-8");
 
-    var milkListJSON = []
+    var milkListJSON = [];
     if (milkList.length !== 0)
-        milkListJSON = JSON.parse(milkList)
+        milkListJSON = JSON.parse(milkList);
 
-    const milk = milkListJSON.find(milk => date === milk.date)
-    
-    if (milk){
-       
-        const newMilkListJSON = milkListJSON.filter(milk => milk.date !== date)
+    const milk = milkListJSON.find(milk => date === milk.date);
 
-        try{
-            fs.writeFileSync(path.join(__dirname , "../database/milk.json") , JSON.stringify(newMilkListJSON) , "utf-8");
+    if (milk) {
+
+        const newMilkListJSON = milkListJSON.filter(milk => milk.date !== date);
+
+        try {
+            fs.writeFileSync(path.join(__dirname, "../database/milk.json"), JSON.stringify(newMilkListJSON), "utf-8");
             return true;
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
-    }
-    else return false ;
-    
+    } else return false;
+
 }
-
-
 
 const getMilkByID = (id) => {
 
-    const milkList = fs.readFileSync(path.join(__dirname , "../database/milk.json") , "utf-8")
-    
-    var milkListJSON =[]
-    if (milkList.length !== 0){
-        milkListJSON = JSON.parse(milkList)
+    const milkList = fs.readFileSync(path.join(__dirname, "../database/milk.json"), "utf-8");
+
+    var milkListJSON = [];
+    if (milkList.length !== 0) {
+        milkListJSON = JSON.parse(milkList);
     }
 
-    const milk = milkListJSON.find(milk => milk.id === id)
+    const milk = milkListJSON.find(milk => milk.id === id);
 
     return milk;
-
 }
 
 module.exports = {
@@ -117,4 +99,5 @@ module.exports = {
     getMilkByID,
     getMilkList,
     deleteMilk,
-}
+};
+

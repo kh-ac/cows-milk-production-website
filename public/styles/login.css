@@ -1,20 +1,17 @@
-
-
-.login > h1 {
+.login>h1 {
     padding-bottom: 30px;
     margin: auto;
     height: fit-content;
     width: fit-content;
 }
 
-.login{
+.login {
     padding-top: 0px;
-    
-    margin: auto ;
+    margin: auto;
     height: fit-content;
     width: fit-content;
 }
 
-.login > form > button{
+.login>form>button {
     margin-top: 30px;
 }

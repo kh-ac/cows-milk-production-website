@@ -1,20 +1,18 @@
 include ./components/page_header
-    link(rel = "stylesheet", href = "/styles/main.css")
-    link(rel = "stylesheet", href = "/styles/dashboard.css")
-    script(src = "/js/scripts.js")
-    title Dashboard
+  link(rel = "stylesheet", href = "/styles/dashboard.css")
+  script(src = "/js/scripts.js")
+  title Dashboard
 
-    body
-        include ./components/nav
+  body  
+    include ./components/nav
 
-        h1 Dashboard
+    .spacer
 
-        .spacer
-
-        .operations
-            include ./components/operations
+    .operations
+      include ./components/operations
 
     include ./components/success
     include ./components/error
-        
-        
+    
+
+

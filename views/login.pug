@@ -1,20 +1,21 @@
 
 include ./components/page_header.pug
-    link(rel = "stylesheet", href = "/styles/login.css")
-    
-
+  link(rel = "stylesheet", href = "/styles/login.css")
 
 body
-    
-    include ./components/login-nav.pug
-    //- Login Form
-    div(class = "login")
-        h1 Login 
-        form(action = "/login" , method = "POST")
-            label(for = "username") Username :
-            input(type = "text",  id = "username" , name = "username" )
-            
-            label(for = "password") Password :
-            input(type = "password", id = "password" , name = "password")
 
-            button(class = "btn" type = "submit") Login
+  include ./components/login-nav.pug
+  //- Login Form
+  div(class = "login")
+    h1 Login 
+    form(action = "/login" , method = "POST")
+      label(for = "username") Username :
+      input(type = "text",  id = "username" , name = "username" )
+
+      label(for = "password") Password :
+      input(type = "password", id = "password" , name = "password")
+
+      button(class = "btn" type = "submit") Login
+
+  include ./components/error
+  

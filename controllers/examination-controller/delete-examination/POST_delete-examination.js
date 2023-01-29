@@ -1,24 +1,19 @@
+const deleteExamination = (req, res) => {
 
+    if (!require("../../session/check_login")(req, res))
+        return res.redirect("/");
 
+    const {
+        id
+    } = req.body;
 
-const deleteExamination = (req , res) => {
-
-    if (!require("../../session/check_login")(req,res))
-        return res.redirect("/")
-
-    const {id} = req.body; 
-
-    const isDeleted = require("../../../models/examination").deleteExamination(id)
-
-    if (isDeleted){
-        res.redirect("/dashboard");
+    if (!require("../../../models/examination").deleteExamination(id)) {
+        req.session.error = "Could not delete examination";
+        return res.redirect("/dashboard");
     }
 
-    else {
-        res.redirect("/dashboard");    
-    }
+    req.session.success = "Examination deleted successfully";
+    res.redirect("/dashboard");
 }
-
-
 
 module.exports = deleteExamination;

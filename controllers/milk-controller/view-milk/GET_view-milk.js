@@ -1,16 +1,14 @@
+const getViewMilk = (req, res) => {
 
+    if (!require("../../session/check_login")(req, res))
+        return res.redirect("/");
 
-const getViewMilk = (req , res) => {
+    const milkListJSON = require('../../../models/milk').getMilkList();
 
-    if (!require("../../session/check_login")(req,res))
-        return res.redirect("/")
+    return res.render('view-milk', {
+        milkList: milkListJSON
+    });
 
-    const milkListJSON = require('../../../models/milk').getMilkList() ;
-
-    return res.render('view-milk' , { 
-        milkList : milkListJSON })
-
-    
 }
 
-module.exports = getViewMilk ;
+module.exports = getViewMilk;

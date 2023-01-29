@@ -1,24 +1,25 @@
 include ./components/page_header
-    link(rel="stylesheet" , href = "/styles/register-cow.css" )
-    title Edit Birth
+  link(rel="stylesheet" , href = "/styles/register-cow.css" )
+  title Edit Birth
 
+  body
+    include ./components/nav
 
-    body
-        include ./components/nav
+    .register-cow-form
+      h1 Edit Birth
 
-        .register-cow-form
-            h1 Edit Birth
+      form(action = "/birth/edit" , method = "POST")
 
-            form(action = "/birth/edit" , method = "POST")
+        input(type = "hidden" , name = "id" , value = birth.id)
 
-                input(type = "hidden" , name = "id" , value = birth.id)
+        label(for = "birth_date") Birth Date :
+        input(type = "date" , id = "birth_date" , name = "birthDate" , value = birth.birthDate) 
 
-                label(for = "birth_date") Birth Date :
-                input(type = "date" , id = "birth_date" , name = "birthDate" , value = birth.birthDate) 
+        label(for = "motherID") Mother ID
+        input(type = "text" , id = "motherID" , name = "motherID" required , value = birth.motherID)
 
-                label(for = "motherID") Mother ID
-                input(type = "text" , id = "motherID" , name = "motherID" required , value = birth.motherID)
+        label
+        button(type = "submit" , class = "btn") Save
+        
 
-                label
-                button(type = "submit" , class = "btn") Save
 

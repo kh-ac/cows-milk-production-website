@@ -1,10 +1,8 @@
+const checkLogin = (req, res) => {
 
-
-const checkLogin = (req , res ) => {
-
-    if(req.session.user)
+    if (req.session.user)
         return true;
-    
+
     return false;
 }
 

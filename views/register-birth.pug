@@ -1,23 +1,23 @@
 include ./components/page_header
-    link(rel="stylesheet" , href = "/styles/register-cow.css" )
-    title Register New Birth
+  link(rel="stylesheet" , href = "/styles/register-cow.css" )
+  title Register New Birth
 
+  body
+    include ./components/nav
 
-    body
-        include ./components/nav
+    .register-cow-form
+      h1 Register New Birth
 
-        .register-cow-form
-            h1 Register New Birth
+      form(action = "/birth/register" , method = "POST")
 
-            form(action = "/birth/register" , method = "POST")
+        label(for = "birth_date") Birth Date :
+        input(type = "date" , id = "birth_date" , name = "birthDate" required) 
 
-                label(for = "birth_date") Birth Date :
-                input(type = "date" , id = "birth_date" , name = "birthDate" required) 
+        label(for = "motherID") Mother ID
+        input(type = "text" , id = "motherID" , name = "motherID" required)
 
-                label(for = "motherID") Mother ID
-                input(type = "text" , id = "motherID" , name = "motherID" required)
+        label
+        button(type = "submit" , class = "btn") Register 
 
-                label
-                button(type = "submit" , class = "btn") Register 
-
-        include ./components/error
+    include ./components/error
+    
