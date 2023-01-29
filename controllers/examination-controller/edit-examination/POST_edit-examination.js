@@ -3,8 +3,8 @@
 
 const postEditExamination = (req,res) => {
 
-    // if (!require("../session/check_login"))
-    //     res.redirect("/")
+    if (!require("../../session/check_login")(req,res))
+        return res.redirect("/")
 
     const {id , date , disease} = req.body;
 

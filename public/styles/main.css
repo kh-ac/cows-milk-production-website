@@ -61,7 +61,8 @@ nav ul {
 
 nav li {
     list-style-type: none;
-    margin-left: 100px;
+    margin-left: 50px;
+    
 }
 
 nav h1{
@@ -70,7 +71,12 @@ nav h1{
 
 nav p, nav a{
     color: var(--primary-text-color);
-    font-weight: 400;
+    font-weight: 700;
+    
+}
+
+nav > ul > li > a:hover {
+    color: var(--accent-color);
 }
 
 /* Forms */
@@ -111,3 +117,13 @@ select{
     border: 1px solid var(--primary-color);
     padding: 5px;
 }
+
+
+.error-container {
+    background-color: var(--color-error);
+}
+
+.success-container {
+    background-color: var(--color-success);
+}
+

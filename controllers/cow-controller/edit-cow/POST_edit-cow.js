@@ -3,8 +3,8 @@
 
 const POSTeditCow = (req,res) => {
 
-    // if (!require("../session/check_login"))
-    //     res.redirect("/")
+    if (!require("../../session/check_login"))
+        res.redirect("/")
 
     const {id , birthDate , startDate , breed , motherID} = req.body;
 

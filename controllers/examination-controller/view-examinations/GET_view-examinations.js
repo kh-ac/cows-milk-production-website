@@ -2,8 +2,8 @@
 
 const getViewExaminations = (req , res) => {
 
-    // if (!require('../session/check_login')(req,res))
-    //     return res.redirect('/');
+    if (!require("../../session/check_login")(req,res))
+        return res.redirect("/")
 
     const examinationsJson = require('../../../models/examination').getExaminations() ;
 

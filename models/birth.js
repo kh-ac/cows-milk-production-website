@@ -1,10 +1,7 @@
 
 const fs = require("fs")
 const path = require("path")
-
-const uid = ()=>{
-    return Date.now().toString(36) + Math.random().toString(36).substring(5);
-}
+const uid = require("../utils/uid-generator")
 
 const registerBirth = (id , birthDate , motherID) => {
 

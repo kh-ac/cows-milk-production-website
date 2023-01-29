@@ -2,7 +2,8 @@
 
 
 const deleteMilk = (req , res) => {
-
+    if (!require("../../session/check_login")(req,res))
+        return res.redirect("/")
     const {date} = req.body; 
   
 

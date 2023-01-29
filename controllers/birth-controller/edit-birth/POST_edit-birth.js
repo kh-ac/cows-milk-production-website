@@ -3,8 +3,8 @@
 
 const postEditBirth = (req,res) => {
 
-    // if (!require("../session/check_login"))
-    //     res.redirect("/")
+    if (!require("../../session/check_login"))
+        res.redirect("/")
 
     const {id , birthDate , motherID} = req.body;
 

@@ -1,11 +1,21 @@
 
 
-.operations{
-    display : grid;
-    
+h1{
+    margin: auto;
     width: fit-content;
     height: fit-content;
-    grid-gap: 20px;
+    
+}
+
+.spacer{
+    margin-bottom: 50px;
+}
+.operations{
+    display : grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: fit-content;
+    height: fit-content;
+    grid-gap: 50px ;
     margin: auto;
 }
 

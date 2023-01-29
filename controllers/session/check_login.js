@@ -2,7 +2,7 @@
 
 const checkLogin = (req , res ) => {
 
-    if(req.session.isAuth)
+    if(req.session.user)
         return true;
     
     return false;

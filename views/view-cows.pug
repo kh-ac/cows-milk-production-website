@@ -20,11 +20,11 @@ include ./components/page_header
                 
             for cow in cows || [] 
                 .list-element()
-                    p= cow.id
-                    p= cow.birthDate
-                    p= cow.startDate
-                    p= cow.breed
-                    p= cow.motherID
+                    p= cow.id 
+                    p= cow.birthDate || "Undefined"
+                    p= cow.startDate 
+                    p= cow.breed 
+                    p= cow.motherID || "Undefined"
                     
                     form(action = "/cow/edit" , method ="GET")
                         input(type = "hidden" , name = "id" , value = cow.id)

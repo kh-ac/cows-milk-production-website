@@ -2,8 +2,8 @@
 
 const postRegisterCow = (req , res) => {
 
-    // if (!require("../session/check_login")(req,res))
-    //     return res.redirect("/");
+    if (!require("../../session/check_login")(req,res))
+        return res.redirect("/");
 
     const { id ,birthDate , startDate , breed , motherID } = req.body;
 
@@ -14,9 +14,6 @@ const postRegisterCow = (req , res) => {
 
     req.session.success = "Cow registered successfully"
     return res.redirect("/dashboard")
-    
-
-    
 
 }
 

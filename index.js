@@ -31,11 +31,11 @@ app.use(express.static('./public'));
 // Routes
 app.use("/", require("./routers/login") )
 app.use("/dashboard" , require("./routers/dashboard"))
-
 app.use("/cow" , require("./routers/cow"))
 app.use("/birth" , require("./routers/birth"))
 app.use("/milk" , require("./routers/milk"))
 app.use("/examination" , require("./routers/examination"))
+app.use("/logout" , require("./routers/logout"))
 
 
 

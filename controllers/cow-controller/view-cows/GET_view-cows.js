@@ -2,8 +2,8 @@
 
 const getViewCows = (req , res) => {
 
-    // if (!require('../session/check_login')(req,res))
-    //     return res.redirect('/');
+    if (!require('../../session/check_login')(req,res))
+        return res.redirect('/');
 
     const cowsJson = require('../../../models/cow').getCows() ;
 
