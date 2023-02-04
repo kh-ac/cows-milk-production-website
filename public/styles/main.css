@@ -160,3 +160,8 @@ select {
     color: #F3EFE0;
 }
 
+.page-not-found > h1 {
+    margin:auto;
+    width: fit-content;
+    height: fit-content;
+}

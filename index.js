@@ -37,5 +37,6 @@ app.use("/birth", require("./routers/birth"))
 app.use("/milk", require("./routers/milk"))
 app.use("/examination", require("./routers/examination"))
 app.use("/logout", require("./routers/logout"))
+app.use(require("./routers/404"))
 
 app.listen(4000)
