@@ -1,5 +1,6 @@
 const getRegisterCow = (req, res) => {
 
+    console.log(req);
     if (!require("../../session/check_login")(req, res))
         return res.redirect("/");
 

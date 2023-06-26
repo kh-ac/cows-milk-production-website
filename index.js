@@ -14,7 +14,7 @@ app.use(express.urlencoded({
 app.use(session({
     secret: "key that will sign cookie",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
         maxAge: 1000 * 60 * 60 * 60 // 1 day 
     }
