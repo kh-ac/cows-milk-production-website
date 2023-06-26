@@ -1,9 +1,7 @@
 const postLogout = (req, res) => {
+  req.session.user = null;
 
-    req.session.user = null;
-
-    return res.redirect("/");
-
-}
+  return res.redirect("/");
+};
 
 module.exports = postLogout;

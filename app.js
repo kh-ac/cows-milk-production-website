@@ -1,24 +1,27 @@
 const express = require("express");
 const session = require("express-session");
 
-
 // express app
 const app = express();
 
 // for POST requests (Required)
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
-// 
-app.use(session({
+//
+app.use(
+  session({
     secret: "key that will sign cookie",
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 60 // 1 day 
-    }
-}))
+      maxAge: 1000 * 60 * 60 * 60, // 1 day
+    },
+  })
+);
 
 // Set view engine
 app.set("view engine", "pug");
@@ -27,7 +30,7 @@ app.set("view engine", "pug");
 app.set("views", "./views");
 
 // Set static folder
-app.use(express.static('./public'));
+app.use(express.static("./public"));
 
 // Routes
 app.use("/", require("./routers/login"));
@@ -40,4 +43,3 @@ app.use("/logout", require("./routers/logout"));
 app.use(require("./routers/404"));
 
 app.listen(4000);
-

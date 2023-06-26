@@ -1,9 +1,7 @@
 const checkLogin = (req, res) => {
+  if (req.session.user) return true;
 
-    if (req.session.user)
-        return true;
-
-    return false;
-}
+  return false;
+};
 
 module.exports = checkLogin;
